@@ -18,7 +18,12 @@ const App = () => {
       socket.emit("client_request", "Mahakali_Basin");
     });
   }, []);
-
+  const arr = [];
+  const calculateAverage = (array) => {
+    const sum = array.reduce((acc, cr) => acc + cr);
+    const average = sum / array.length;
+    return average;
+  };
   return (
     <>
       <div className="fit">
@@ -34,27 +39,78 @@ const App = () => {
                     const day = date.getDate();
                     const hour = date.getHours();
                     const minute = date.getMinutes();
-                    return <td>{`${month + 1}/${day} ${hour}:${minute}`}</td>;
+                    return <td>{`${month + 1}/${day}-${hour}:${minute}`}</td>;
                   })}
                 </tr>
                 <tr>
-                  <td>Value:</td>
+                  <td>
+                    <b>Value:</b>
+                  </td>
                   {item.observations[0].data.map((value) => {
+                    arr.push(value.value);
                     return <td>{value.value}</td>;
                   })}
                 </tr>
-                {/* <tr>
-                  <td>Min</td>
+                <tr>
                   <td>
-                  {item.observations[0].data.map((value) => {
-                      return <td>{Math.min(value.value)}</td>;
-                    })}
+                    <b>Category:</b>
                   </td>
-                  <td>Avg</td>
-                  <td>Max:</td>{item.observations[0].data.map((value) => {
-                      return <td>{Math.max(value.value)}</td>;
-                    })}
-                </tr> */}
+                  {item.observations[0].data.map((value) => {
+                    const val = value.value;
+                    {
+                      if (
+                        val <
+                        calculateAverage(
+                          item.observations[0].data.map((value) => value.value)
+                        )
+                      ) {
+                        return <td style={{ color: "blue" }}>Below Avg</td>;
+                      } else if (
+                        val >
+                        calculateAverage(
+                          item.observations[0].data.map((value) => value.value)
+                        )
+                      ) {
+                        return <td style={{ color: "red" }}>Above Avg</td>;
+                      } else {
+                        return <td style={{ color: "green" }}>Average</td>;
+                      }
+                    }
+                  })}
+                </tr>
+                <tr>
+                  <td style={{ color: "blue" }}>
+                    <b>Min:</b>
+                  </td>
+                  <td style={{ color: "blue" }}>
+                    {Math.min(
+                      ...item.observations[0].data.map((value) => value.value)
+                    )}
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ color: "green" }}>
+                    <b>Avg:</b>
+                  </td>
+                  <td style={{ color: "green" }}>
+                    {calculateAverage(
+                      item.observations[0].data.map((value) => value.value)
+                    )}
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ color: "red" }}>
+                    <b>Max:</b>
+                  </td>
+                  <td style={{ color: "red" }}>
+                    {Math.max(
+                      ...item.observations[0].data.map((value) => value.value)
+                    )}
+                  </td>
+                </tr>
+                <br />
+                <br />
+                <br />
               </>
             ))}
           </tbody>

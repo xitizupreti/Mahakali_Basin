@@ -1,23 +1,23 @@
 *{
-  box-sizing: border-box;
-  padding: 10px;
-  }
-  .fit{
-    width: fit-content;
-  }
-  
-  .tab{
-    border: 5px solid blue;
-    border-collapse: collapse;
-  }
-  
-  th, td{
-    border: 3px solid blueviolet;
-  }
-  .App {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+box-sizing: border-box;
+padding: 10px;
+}
+.fit{
+  width: fit-content;
+}
+
+.tab{
+  border: 5px solid blue;
+  border-collapse: collapse;
+}
+
+th, td{
+  border: 3px solid blueviolet;
+}
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
