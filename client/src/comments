@@ -1,0 +1,16 @@
+//  const arr = [];
+//   const hour='';
+//   const day='';
+//   const month='';
+//   const date='';
+//   const calculateAverage = (array) => {
+//     const sum = array.reduce((acc, cr) => acc + cr);
+//     const average = sum / array.length;
+//     return average;
+//   };
+//   const hr = data.observations[0].data.map((value) => {
+//     date = new Date(value.datetime);
+//     month = date.getMonth();
+//     day = date.getDate();
+//     hr = date.getHours();
+//   });

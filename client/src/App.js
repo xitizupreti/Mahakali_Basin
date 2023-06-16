@@ -38,14 +38,24 @@ const App = () => {
                     const month = date.getMonth();
                     const day = date.getDate();
                     const hour = date.getHours();
-                    const minute = date.getMinutes();
-                    return <td>{`${month + 1}/${day}-${hour}:${minute}`}</td>;
+
+                    switch (hour) {
+                      case hour:
+                        return (
+                          <td>{`${month + 1}/${day}:${hour}-${hour + 1}`}</td>
+                        );
+                    }
                   })}
+
+                  {/* {item.observations[0].data.forEach(function (value) {
+                    console.log(value.value);
+                  })} */}
                 </tr>
                 <tr>
                   <td>
                     <b>Value:</b>
                   </td>
+
                   {item.observations[0].data.map((value) => {
                     arr.push(value.value);
                     return <td>{value.value}</td>;
